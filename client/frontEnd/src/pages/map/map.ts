@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-
+declare let google
 @IonicPage()
 @Component({
   selector: 'page-map',
@@ -27,6 +27,7 @@ export class MapPage {
     console.log(this.mapElement);
   }
   initMap() {
+      let that = this
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
         center: {lat: -34.397, lng: 150.644},
         zoom: 8
