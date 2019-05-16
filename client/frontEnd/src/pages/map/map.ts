@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the MapPage page.
@@ -19,18 +19,27 @@ export class MapPage {
     map: any;
     
     
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCrtl: MenuController) {
   }
   
   ionViewDidLoad() {
     this.initMap();
-    console.log(this.mapElement);
+    console.log("did load");
+  }
+  ionViewDidEnter(){
+    this.enablePointsMenu();
+    console.log("did enter")
+  }
+
+  enablePointsMenu() {
+    this.menuCrtl.enable(true, 'points');
+    this.menuCrtl.enable(false, 'home');
   }
   initMap() {
       let that = this
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
         center: {lat: -34.397, lng: 150.644},
         zoom: 8
-      });
+      }); 
     }
 }

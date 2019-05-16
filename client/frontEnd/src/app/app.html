@@ -1,2 +1,28 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu id= "home" [content]="content">
+        <ion-content>
+                <ion-navbar>
+                <ion-title>Menu</ion-title>
+              </ion-navbar>
+          <ion-list>
+                <button ion-item (click)=" onClick()">Home</button>
+                <button ion-item (click)=" onClick()">Account</button>
+                <button ion-item (click)=" onClick()">Settings</button>
+                <button ion-item (click)=" onClick()">About</button>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+
+<ion-menu id="points" [content]= "content">
+    <ion-content>
+        <ion-navbar>
+            <ion-title> Stuff near you! </ion-title>
+        </ion-navbar>
+        <ion-list>
+            <ion-item>Stuff near you!</ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<ion-nav #content [root]="rootPage"></ion-nav>
 

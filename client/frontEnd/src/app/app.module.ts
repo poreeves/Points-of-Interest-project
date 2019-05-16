@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -15,6 +17,7 @@ import { MapPage } from '../pages/map/map'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserServiceProvider } from '../providers/user-service/user-service';
+import { MapsProvider } from '../providers/maps/maps';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +51,9 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserServiceProvider
+    UserServiceProvider,
+    MapsProvider,
+    Geolocation
   ]
 })
 export class AppModule {}
