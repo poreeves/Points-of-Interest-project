@@ -10,6 +10,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 */
 @Injectable()
 export class MapsProvider {
+  currentPos: {} 
 
   constructor(public http: HttpClient, private geolocation: Geolocation) {
     console.log('Hello MapsProvider Provider');
@@ -18,6 +19,12 @@ export class MapsProvider {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude)
       console.log(resp.coords.longitude)
+      this.currentPos= {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
+
+
      }).catch((error) => {
        console.log('Error getting location', error);
      });

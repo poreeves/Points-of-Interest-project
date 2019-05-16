@@ -19,7 +19,7 @@ export class HomePage {
     return this.navCtrl.push(RegistrationPage)
   }
   ionViewDidLoad() {
-    // return this._maps.getCurrentLoc();
+    return this._maps.getCurrentLoc();
     console.log("did load")
   }
   ionViewDidEnter(){

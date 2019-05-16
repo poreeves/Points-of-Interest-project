@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { MapsProvider } from '../../providers/maps/maps';
 
 /**
  * Generated class for the MapPage page.
@@ -19,7 +20,10 @@ export class MapPage {
     map: any;
     
     
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCrtl: MenuController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public menuCrtl: MenuController,
+    public _maps: MapsProvider) {
   }
   
   ionViewDidLoad() {
@@ -38,8 +42,12 @@ export class MapPage {
   initMap() {
       let that = this
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
-        center: {lat: -34.397, lng: 150.644},
+        center: this._maps.currentPos,
         zoom: 8
       }); 
+      let marker = new google.maps.Marker({
+        position: this._maps.currentPos,
+        map: this.map
+      })
     }
 }
