@@ -29,4 +29,5 @@ export class MapsProvider {
        console.log('Error getting location', error);
      });
   }
+  
 }
