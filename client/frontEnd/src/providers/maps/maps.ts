@@ -10,7 +10,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 */
 @Injectable()
 export class MapsProvider {
-  currentPos: {} 
+  currentPos: {};
+  placeId: any[] = [];
+  placeDetails: any[]=[];
 
   constructor(public http: HttpClient, private geolocation: Geolocation) {
     console.log('Hello MapsProvider Provider');

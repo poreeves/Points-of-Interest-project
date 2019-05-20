@@ -20,7 +20,6 @@ export class HomePage {
   }
   ionViewDidLoad() {
     return this._maps.getCurrentLoc();
-    console.log("did load")
   }
   ionViewDidEnter(){
     this.enableHomeMenu();

@@ -18,9 +18,10 @@ declare let google
 export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
     map: any;
-    positionMarker: []=[]
-    placeId: []=[]
+    // positionMarker: any[] = [];
+    // placeId: any[]=[]
     results: any;
+    // placeDetails: any[]=[]
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -56,7 +57,7 @@ export class MapPage {
         position: this._maps.currentPos,
         map: this.map
       });
-
+      
       let request = {
         location: this._maps.currentPos,
         radius: '500',
@@ -68,41 +69,62 @@ export class MapPage {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (let i = 0; i < results.length; i++) {
             let place = results[i];
-            console.log(results[i].place_id)
+            console.log(results[i])
             let placeId = {
-              id: results[i].place_id
-            }
-            let positionMarker = {
+              id: results[i].place_id,
               lat: place.geometry.viewport.na.j,
-              lng: place.geometry.viewport.ia.j
+              lng: place.geometry.viewport.ia.j,
+              name: place.name,
+              rating: place.rating,
+              icon: place.icon
             }
-            this.positionMarker.push(positionMarker)
-            this.placeId.push(placeId)
+            console.log(placeId)
+            // let positionMarker = {
+            //   lat: place.geometry.viewport.na.j,
+            //   lng: place.geometry.viewport.ia.j
+            // }
+            // this.positionMarker.push(positionMarker)
+            this._maps.placeId.push(placeId)
+            console.log(this._maps.placeId)
           }
-          for(let i = 0; i < this.positionMarker.length; i++) {
+          for(let i = 0; i < this._maps.placeId.length; i++) {
             let marker = new google.maps.Marker({
-              position: this.positionMarker[i],
+              position: {
+                lat: this._maps.placeId[i].lat,
+                lng: this._maps.placeId[i].lng
+              },
               map: this.map
-          })
-          console.log(this.positionMarker[i]);  
+          }) 
+          console.log(marker)
+          // let request = {
+          //   placeId: this.placeId[i].id,
+          //   fields: ['name', 'rating']
+          // };
+          // service.getDetails(request, (results, status) => {
+          //   if (status == google.maps.places.PlacesServiceStatus.OK) {
+          //     console.log(results)
+          //     this.placeDetails.push(results) 
+          //   }
+          // })
+          // console.log(this.placeDetails);  
         }
-          console.log(this.placeId);  
+          // console.log(this.placeId);  
           // this.setMarkers(this.positionMarkers)
         }
        })
       
   }
-     callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (let i = 0; i < results.length; i++) {
-          let place = results[i];
-          let positionMarker = {
-            lat: place.geometry.viewport.na.j,
-            lng: place.geometry.viewport.ia.j
-          }
-          console.log(positionMarker);
-        }
-          // this.setMarkers(this.positionMarkers)
-      }
-     }
+    //  callback(results, status) {
+    //   if (status == google.maps.places.PlacesServiceStatus.OK) {
+    //     for (let i = 0; i < results.length; i++) {
+    //       let place = results[i];
+    //       let positionMarker = {
+    //         lat: place.geometry.viewport.na.j,
+    //         lng: place.geometry.viewport.ia.j
+    //       }
+    //       console.log(positionMarker);
+    //     }
+    //        this.setMarkers(this.positionMarkers)
+    //   }
+    //  }
 }

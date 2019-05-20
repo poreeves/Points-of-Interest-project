@@ -13,6 +13,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { RegistrationPage } from '../pages/registration/registration'
 import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map'
+import { FavoritesPage } from '../pages/favorites/favorites'
+import { AccountPage } from '../pages/account/account'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +30,9 @@ import { MapsProvider } from '../providers/maps/maps';
     TabsPage,
     RegistrationPage,
     LoginPage,
-    MapPage
+    MapPage,
+    FavoritesPage,
+    AccountPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import { MapsProvider } from '../providers/maps/maps';
     TabsPage,
     RegistrationPage,
     LoginPage,
-    MapPage
+    MapPage,
+    FavoritesPage,
+    AccountPage
   ],
   providers: [
     StatusBar,
