@@ -18,7 +18,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "favPlaces": {
+      "type": "hasMany",
+      "model": "FavPlaces",
+      "foreignKey": "userId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

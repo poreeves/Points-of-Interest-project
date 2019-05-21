@@ -22,8 +22,11 @@ export class RegistrationPage {
 
   onRegister(){
     console.log("register work")
-    return this._userService.postUser().subscribe((response: any) => 
-    console.log(response))
+    return this._userService.postUser().subscribe( res => {
+      sessionStorage.setItem('token', res['token']);
+      sessionStorage.setItem('userId', res['userId']);
+      console.log(res)
+   })
   }
 
   ionViewDidLoad() {

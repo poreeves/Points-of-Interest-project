@@ -19,8 +19,11 @@ export class LoginPage {
   }
 
   onLog(){
-    return this._userService.logUser().subscribe((response: any) => 
-    console.log(response))
+    return this._userService.logUser().subscribe( res => {
+      sessionStorage.setItem('token', res['token']);
+      sessionStorage.setItem('userId', res['userId']);
+      console.log(res)
+   })
   }
   
   ionViewDidLoad() {
