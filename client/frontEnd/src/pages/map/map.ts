@@ -56,7 +56,8 @@ export class MapPage {
       }); 
       let marker = new google.maps.Marker({
         position: this._maps.currentPos,
-        map: this.map
+        map: this.map,
+        label: 'U'
       });
       
       let request = {
@@ -70,19 +71,20 @@ export class MapPage {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (let i = 0; i < results.length; i++) {
             let place = results[i];
-            console.log(results[i])
+            console.log(results[0])
+            console.log('results.geometry loc lat ', results[0].geometry.location.lat)
             let placeId = {
               id: results[i].place_id,
               lat: place.geometry.viewport.na.j,
               lng: place.geometry.viewport.ia.j,
               name: place.name,
               rating: place.rating,
-              icon: place.icon
+              icon: place.icon,
+              location: results[i].geometry.location
             }
-            console.log(placeId)
             // let positionMarker = {
-            //   lat: place.geometry.viewport.na.j,
-            //   lng: place.geometry.viewport.ia.j
+            //   lat: place.geometry.viewport.na.j, place.geometry.location.lat
+            //   lng: place.geometry.viewport.ia.j  place.geometry.location.lng
             // }
             // this.positionMarker.push(positionMarker)
             this._maps.placeId.push(placeId)
@@ -93,11 +95,11 @@ export class MapPage {
               content: this._maps.placeId[i].name
             });
             let marker = new google.maps.Marker({
-              position: {
-                lat: this._maps.placeId[i].lat,
-                lng: this._maps.placeId[i].lng,
-                label: 'Hello World!'
-              },
+              position: this._maps.placeId[i].location, 
+              // {
+              // lat: this._maps.placeId[i].lat,
+              //   lng: this._maps.placeId[i].lng,
+              // },
               map: this.map
           }) 
           marker.addListener('click', () => {
@@ -116,6 +118,7 @@ export class MapPage {
           // })
           // console.log(this.placeDetails);  
         }
+          
           // console.log(this.placeId);  
           // this.setMarkers(this.positionMarkers)
         }

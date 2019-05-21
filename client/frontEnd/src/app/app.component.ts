@@ -45,16 +45,16 @@ export class MyApp {
     console.log(id)
     let request = {
       placeId: id,
-      fields: ['name', 'rating', 'formatted_phone_number', 'geometry', 'formatted_address', 'icon', 'photo' ]
+      fields: ['name', 'rating', 'formatted_phone_number', 'geometry', 'formatted_address', 'icon', 'photo', 'opening_hours', 'website']
     };
-
     let service = new google.maps.places.PlacesService(document.createElement('div'));
       service.getDetails(request, (results, status) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
             this._maps.placeDetails = results
-            console.log(this._maps.placeDetails)
-            console.log(this._maps.placeDetails['photos'][0]['html_attributions'][0])
-            this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
+            console.log('results hours', results['opening_hours']['weekday_text'])
+            this._maps.openHours = results['opening_hours']['weekday_text']
+            console.log( 'provider details' ,this._maps.placeDetails)
+            // this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
           }
         })
 

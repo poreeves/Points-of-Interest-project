@@ -15,6 +15,7 @@ export class MapsProvider {
   placeDetails: any[] = [];
   map: any;
   imgUrl: string;
+  openHours: any[] = [];
   
 
   constructor(public http: HttpClient, private geolocation: Geolocation) {
@@ -22,8 +23,8 @@ export class MapsProvider {
   }
   getCurrentLoc(){
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp.coords.latitude)
-      console.log(resp.coords.longitude)
+      console.log('lat', resp.coords.latitude)
+      console.log('lng', resp.coords.longitude)
       this.currentPos= {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude

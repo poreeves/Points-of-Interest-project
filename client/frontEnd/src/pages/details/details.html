@@ -12,11 +12,13 @@
 
 <ion-content>
   <ion-item>
-    <h3>{{_maps.placeDetails.name}} </h3>
-    <p> {{_maps.placeDetails.formatted_address}} <br>
-      {{_maps.placeDetails.formatted_phone_number}} </p>
-      <div> 
-        <img src = {{_maps.imgUrl}}> </div>
+    <h2>{{_maps.placeDetails.name}} </h2>
+    <h4> {{_maps.placeDetails.formatted_address}} <br>
+      {{_maps.placeDetails.formatted_phone_number}} <br>
+    {{_maps.placeDetails.website}} </h4>
+      <div *ngFor = "let day of this._maps.openHours"> 
+        <ion-item> {{day}} </ion-item>
+        </div>
   </ion-item>
 
 </ion-content>

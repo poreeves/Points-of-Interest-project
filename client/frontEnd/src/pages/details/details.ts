@@ -24,8 +24,8 @@ export class DetailsPage {
   }
   ionViewDidEnter(){
     console.log("did enter")
-    console.log(this._maps.placeDetails)
-    console.log('photo array', this._maps.placeDetails['photos'][0]['html_attributions'][0], this._maps.imgUrl)
+    console.log('geometyry location', this._maps.placeDetails['geometry']['location'])
+    
   }
 
 }
