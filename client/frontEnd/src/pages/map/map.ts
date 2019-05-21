@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { MapsProvider } from '../../providers/maps/maps';
 
@@ -17,11 +17,12 @@ declare let google
 })
 export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
-    map: any;
+    // map: any;
     // positionMarker: any[] = [];
     // placeId: any[]=[]
     results: any;
     // placeDetails: any[]=[]
+  @Output() map = new EventEmitter
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -88,13 +89,20 @@ export class MapPage {
             console.log(this._maps.placeId)
           }
           for(let i = 0; i < this._maps.placeId.length; i++) {
+            let infowindow = new google.maps.InfoWindow({
+              content: this._maps.placeId[i].name
+            });
             let marker = new google.maps.Marker({
               position: {
                 lat: this._maps.placeId[i].lat,
-                lng: this._maps.placeId[i].lng
+                lng: this._maps.placeId[i].lng,
+                label: 'Hello World!'
               },
               map: this.map
           }) 
+          marker.addListener('click', () => {
+            infowindow.open(this.map, marker);
+          });
           console.log(marker)
           // let request = {
           //   placeId: this.placeId[i].id,

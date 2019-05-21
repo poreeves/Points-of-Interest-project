@@ -12,7 +12,10 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class MapsProvider {
   currentPos: {};
   placeId: any[] = [];
-  placeDetails: any[]=[];
+  placeDetails: any[] = [];
+  map: any;
+  imgUrl: string;
+  
 
   constructor(public http: HttpClient, private geolocation: Geolocation) {
     console.log('Hello MapsProvider Provider');

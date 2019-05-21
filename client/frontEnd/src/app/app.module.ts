@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -15,6 +15,7 @@ import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map'
 import { FavoritesPage } from '../pages/favorites/favorites'
 import { AccountPage } from '../pages/account/account'
+import { DetailsPage } from '../pages/details/details'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,7 +33,8 @@ import { MapsProvider } from '../providers/maps/maps';
     LoginPage,
     MapPage,
     FavoritesPage,
-    AccountPage
+    AccountPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { MapsProvider } from '../providers/maps/maps';
     LoginPage,
     MapPage,
     FavoritesPage,
-    AccountPage
+    AccountPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
@@ -59,7 +62,7 @@ import { MapsProvider } from '../providers/maps/maps';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServiceProvider,
     MapsProvider,
-    Geolocation
+    Geolocation,
   ]
 })
 export class AppModule {}

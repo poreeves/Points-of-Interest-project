@@ -1,6 +1,6 @@
 <ion-menu id= "home" [content]="content">
         <ion-content>
-                <ion-navbar>
+                <ion-navbar color = "primary">
                 <ion-title>Menu</ion-title>
               </ion-navbar>
           <ion-list>
@@ -14,15 +14,16 @@
 
 <ion-menu id="points" [content]= "content">
     <ion-content>
-        <ion-navbar>
+        <ion-navbar color = "primary">
             <ion-title> Stuff near you! </ion-title>
         </ion-navbar>
         <ion-list *ngFor= 'let item of _maps.placeId'>
-            <button ion-item (click) = "getDetails(item.id)">{{item.name}} rated: {{item.rating}}</button>
+            <button ion-item (click) = "goToDetails(item.id)" menuToggle>{{item.name}} rated: {{item.rating}}</button>
         </ion-list>
     </ion-content>
 </ion-menu>
 
 
 <ion-nav #content [root]="rootPage"></ion-nav>
+<!-- <page-map (map) = 'map'></page-map> -->
 
