@@ -17,7 +17,9 @@ export class DetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public _maps: MapsProvider) {
   }
-
+  onAddFavs(){
+    return this._maps.addFav(this._maps.placeDetails['place_id'], this._maps.placeDetails['name']).subscribe((response: any) => console.log(response) )
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');

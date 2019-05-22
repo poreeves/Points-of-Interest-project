@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MapsProvider } from '../../providers/maps/maps';
+import { DetailsPage } from '../details/details'
 
 /**
  * Generated class for the FavoritesPage page.
@@ -14,12 +15,33 @@ import { MapsProvider } from '../../providers/maps/maps';
   templateUrl: 'favorites.html',
 })
 export class FavoritesPage {
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public _maps: MapsProvider) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
+  onDetails(){
+    return this.navCtrl.push(DetailsPage)
   }
+  onGetFav(){
+    return this._maps.getFavs().subscribe((res: any) => {
+      let favId: any[] = []
+      console.log(res)
+      console.log('res.place', res['placeId'])
+        for(let i=0; i<res.length; i++){
+          favId.push({
+            placeId: res[i]['placeId'],
+            name: res[i]['name']
+          })
+        }
+        this._maps.favPlaces = favId
 
+    })
+  }
+  ionViewDidLoad() {
+    this.onGetFav()
+    
+  }
+  ionViewDidEnter(){
+    console.log('did enter map favplace', this._maps.favPlaces)
+  }
 }

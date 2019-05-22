@@ -22,10 +22,14 @@ export class RegistrationPage {
 
   onRegister(){
     console.log("register work")
+    
     return this._userService.postUser().subscribe( res => {
-      sessionStorage.setItem('token', res['token']);
-      sessionStorage.setItem('userId', res['userId']);
-      console.log(res)
+      if(res = true){
+        this.navCtrl.pop();
+        sessionStorage.setItem('token', res['token']);
+        sessionStorage.setItem('userId', res['userId']);
+        console.log(res)
+      }
    })
   }
 

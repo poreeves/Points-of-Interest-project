@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { FavoritesPage } from '../favorites/favorites'
 
 /**
@@ -15,7 +15,7 @@ import { FavoritesPage } from '../favorites/favorites'
 })
 export class AccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCrtl: MenuController) {
   }
   toFav(){
     return this.navCtrl.push(FavoritesPage)
@@ -24,4 +24,13 @@ export class AccountPage {
     console.log('ionViewDidLoad AccountPage');
   }
 
+  ionViewDidEnter(){
+    this.enableHomeMenu();
+    console.log("did enter")
+  }
+
+  enableHomeMenu() {
+    this.menuCrtl.enable(true, 'home');
+    this.menuCrtl.enable(false, 'points');
+  }
 }

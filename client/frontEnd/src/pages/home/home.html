@@ -8,8 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
+  <div *ngIf = '!_userService.loggedIn'>
+    <h2>Welcome!</h2>
+    <h4>Please Log In</h4>
+    <p>
     This starter project comes with simple tabs-based layout for apps
     that are going to primarily use a Tabbed UI.
   </p>
@@ -19,5 +21,13 @@
   </p>
   <button ion-button (click)= "toLog()" color = "secondary"> log in here</button>
   <button ion-button (click)="toReg()" color = "secondary">or Register here!</button>
+
+  </div>
+  
+  <div *ngIf = '_userService.loggedIn'>
+    <h2>Welcome {{_userService.userInfo.firstName}}</h2>
+    <button ion-button (click)="toLogOut()" color = "secondary"> Log Out</button>
+  </div>
+
 </ion-content>
 

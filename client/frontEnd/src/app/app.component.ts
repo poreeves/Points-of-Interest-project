@@ -1,11 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav} from 'ionic-angular';
+import { Platform, Nav, NavController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
 import {DetailsPage} from '../pages/details/details'
+import { AboutPage } from '../pages/about/about';
+import { ContactPage } from '../pages/contact/contact';
+import { HomePage } from '../pages/home/home';
+import { AccountPage } from '../pages/account/account'
 
 import { MapsProvider } from '../providers/maps/maps';
 
@@ -14,7 +18,7 @@ declare let google
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav) nav: NavController;
   map: any
   results: any
   details: any
@@ -29,7 +33,29 @@ export class MyApp {
       splashScreen.hide();
     });
   }
-  onClick(){
+  
+  // onClick(page){
+  //   this.nav.push(page)
+  // } 
+  // getting errors
+
+  onHome(){
+    this.nav.push(HomePage)
+  }
+  onAccount(){
+    this.nav.push(AccountPage)
+  }
+  onContact(){
+
+  }
+  onSettings(){
+    this.nav.push(ContactPage)
+  }
+  onAbout(){
+    this.nav.push(AboutPage)
+  }
+  onHelp(){
+
   }
   sliceUrl(str){
     let halfStr = str.replace('<a href="', '"')
@@ -40,12 +66,15 @@ export class MyApp {
     this._maps.imgUrl = newStr
     
   }
+  onDetails(){
+    this.nav.push(DetailsPage);
+  }
   goToDetails(id){
     this.nav.push(DetailsPage);
     console.log(id)
     let request = {
       placeId: id,
-      fields: ['name', 'rating', 'formatted_phone_number', 'geometry', 'formatted_address', 'icon', 'photo', 'opening_hours', 'website']
+      fields: ['name', 'place_id', 'type', 'rating', 'formatted_phone_number', 'geometry', 'formatted_address', 'icon', 'photo', 'opening_hours', 'website']
     };
     let service = new google.maps.places.PlacesService(document.createElement('div'));
       service.getDetails(request, (results, status) => {
@@ -54,9 +83,10 @@ export class MyApp {
             console.log('results hours', results['opening_hours']['weekday_text'])
             this._maps.openHours = results['opening_hours']['weekday_text']
             console.log( 'provider details' ,this._maps.placeDetails)
+            console.log('placedetails[place_id]', this._maps.placeDetails['place_id'])
             // this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
           }
         })
 
-        }
+  }
 }

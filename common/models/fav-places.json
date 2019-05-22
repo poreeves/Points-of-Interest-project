@@ -9,6 +9,9 @@
     "placeId": {
       "type": "string",
       "required": true
+    },
+    "name": {
+      "type": "string"
     }
   },
   "validations": [],

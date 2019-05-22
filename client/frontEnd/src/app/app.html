@@ -4,10 +4,12 @@
                 <ion-title>Menu</ion-title>
               </ion-navbar>
           <ion-list>
-                <button ion-item (click)=" onClick()">Home</button>
-                <button ion-item (click)=" onClick()">Account</button>
-                <button ion-item (click)=" onClick()">Settings</button>
-                <button ion-item (click)=" onClick()">About</button>
+                <button ion-item (click)="onHome()" menuToggle>Home</button>
+                <button ion-item (click)="onAccount()" menuToggle>Account</button>
+                <button ion-item (click)="onSettings()" menuToggle>Settings</button>
+                <button ion-item (click)="onContact()" menuToggle>Contact</button>
+                <button ion-item (click)="onAbout()" menuToggle>About</button>
+                <button ion-item (click)="onHelp()" menuToggle>Help</button>
           </ion-list>
         </ion-content>
       </ion-menu>
@@ -18,7 +20,7 @@
             <ion-title> Stuff near you! </ion-title>
         </ion-navbar>
         <ion-list *ngFor= 'let item of _maps.placeId'>
-            <button ion-item (click) = "goToDetails(item.id)" menuToggle>{{item.name}} rated: {{item.rating}}</button>
+            <button ion-item (click) = "this._maps.goToDetails(item.id)" (click) = "onDetails()" menuToggle>{{item.name}} rated: {{item.rating}}</button>
         </ion-list>
     </ion-content>
 </ion-menu>

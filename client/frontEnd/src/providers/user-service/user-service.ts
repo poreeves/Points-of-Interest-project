@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserServiceProvider {
 
-  postUrl: string = "http://localhost:3000/api/appUsers"
+  postUrl: string = "http://localhost:3000/api/appUsers/"
   logUrl: string = "http://localhost:3000/api/appUsers/login"
   user = {
     "firstName": "",
@@ -18,6 +18,11 @@ export class UserServiceProvider {
     "email": "",
     "password": ""
   }
+  userInfo = {
+    "firstName": "",
+    "lastName": ""
+  }
+  loggedIn: boolean = false
 
   constructor(public _http: HttpClient) { }
 
@@ -36,7 +41,14 @@ export class UserServiceProvider {
     logUser(){
       return this._http.post(this.logUrl, this.user)
     }
-      
+    
+    getUserInfo(){
+      return this._http.get(this.postUrl + sessionStorage.getItem('userId') + '?access_token=' + sessionStorage.getItem('token'))
+    }
+
+    logOutUser(){
+      return this._http.post(this.postUrl + 'logout?access_token=' +  sessionStorage.getItem('token'), {})
+    }
     
     
   
