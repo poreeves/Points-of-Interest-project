@@ -23,12 +23,12 @@ export class HomePage {
   }
 
   toLogOut(){
-    return this._userService.logOutUser().subscribe(res => {
-      console.log(res)
-      if(res = true){
-        this._userService.loggedIn = false
-      }
-    })
+    // return this._userService.logOutUser().subscribe(res => {
+    //   console.log(res)
+    //   if(res = true){
+    //     this._userService.loggedIn = false
+    //   }
+    // })
   }
   ionViewDidLoad() {
     return this._maps.getCurrentLoc();
