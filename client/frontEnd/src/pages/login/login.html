@@ -11,16 +11,18 @@
 </ion-header>
 
 <ion-content padding>
-<form (ngSubmit) = "onLog()">
+<form [formGroup] = 'log' (ngSubmit) = "onLog()">
     <ion-row>
       <ion-col>
        <ion-list>
-         <ion-item>
-            <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="_userService.user.email" required></ion-input>
-         </ion-item>
-         <ion-item>
-            <ion-input type="text" placeholder="Password" name="password" [(ngModel)]="_userService.user.password" required></ion-input>
-         </ion-item>
+          <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+          <ion-item>
+              <ion-label>Password</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
        </ion-list>
       </ion-col>
     </ion-row>

@@ -39,14 +39,9 @@ export class MyApp {
   // } 
   // getting errors
 
-  onHome(){
-    this.nav.push(HomePage)
-  }
-  onAccount(){
-    this.nav.push(AccountPage)
-  }
+  
   onContact(){
-
+    this.nav.push(ContactPage)
   }
   onSettings(){
     this.nav.push(ContactPage)
@@ -55,7 +50,7 @@ export class MyApp {
     this.nav.push(AboutPage)
   }
   onHelp(){
-
+    this.nav.push(AboutPage)
   }
   sliceUrl(str){
     let halfStr = str.replace('<a href="', '"')

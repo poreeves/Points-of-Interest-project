@@ -23,18 +23,21 @@ export class HomePage {
   }
 
   toLogOut(){
-    // return this._userService.logOutUser().subscribe(res => {
-    //   console.log(res)
-    //   if(res = true){
-    //     this._userService.loggedIn = false
-    //   }
-    // })
+    return this._userService.logOutUser().subscribe(res => {
+      console.log(res)
+      if(res = true){
+        sessionStorage.clear();
+        this._userService.loggedIn = false
+      }
+    })
   }
   ionViewDidLoad() {
     return this._maps.getCurrentLoc();
   }
   ionViewDidEnter(){
     this.enableHomeMenu();
+    console.log(sessionStorage.getItem('token'))
+    console.log(this._userService.loggedIn)
     console.log("did enter")
   }
 

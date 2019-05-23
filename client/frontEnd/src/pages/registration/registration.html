@@ -11,21 +11,25 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="onRegister()" >
+  <form [formGroup]='reg' (ngSubmit)="onRegister()" >
     <ion-row>
       <ion-col>
         <ion-list insert>
           <ion-item>
-              <ion-input type="text" placeholder="First Name" name="firstName" [(ngModel)]="_userService.user.firstName" required></ion-input>
+              <ion-label>First Name</ion-label>
+              <ion-input type="text" formControlName="firstName"></ion-input>
             </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="_userService.user.lastName" required></ion-input>
+              <ion-label>Last Name</ion-label>
+              <ion-input type="text" formControlName="lastName"></ion-input>
             </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="_userService.user.email" required></ion-input>
+              <ion-label>Email</ion-label>
+              <ion-input type="text" formControlName="email"></ion-input>
             </ion-item>
           <ion-item>
-              <ion-input (keydown.enter)="onRegister()" type="text" placeholder="Password" name="password" [(ngModel)]="_userService.user.password" required></ion-input>
+              <ion-label>Password</ion-label>
+              <ion-input (keydown.enter)="onRegister()" type="password" formControlName="password"></ion-input>
             </ion-item>
         </ion-list>
       </ion-col>
