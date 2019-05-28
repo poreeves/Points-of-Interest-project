@@ -15,10 +15,10 @@
 <ion-menu id="points" [content]= "content">
     <ion-content>
         <ion-navbar color = "primary">
-            <ion-title> Stuff near you! </ion-title>
+            <ion-title> Pizza joints near you! </ion-title>
         </ion-navbar>
         <ion-list *ngFor= 'let item of _maps.placeId'>
-            <button ion-item (click) = "this._maps.goToDetails(item.id)" (click) = "onDetails()" menuToggle>{{item.name}} rated: {{item.rating}}</button>
+            <button ion-item (click) = "this._maps.goToDetails(item.id)" (click) = 'this._maps.onCheckFav(item.id)' (click) = "onDetails()" menuToggle>{{item.name}} rated: {{item.rating}}</button>
         </ion-list>
     </ion-content>
 </ion-menu>

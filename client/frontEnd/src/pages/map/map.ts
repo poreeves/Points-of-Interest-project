@@ -62,8 +62,10 @@ export class MapPage {
       
       let request = {
         location: this._maps.currentPos,
-        radius: '500',
-        type: ['point_of_interest']
+        // radius: '1500',
+        rankBy: google.maps.places.RankBy.DISTANCE,
+        keyword: ['pizza'],
+        type: ['food']
       };
     
       let service = new google.maps.places.PlacesService(this.map);
@@ -106,36 +108,9 @@ export class MapPage {
             infowindow.open(this.map, marker);
           });
           console.log(marker)
-          // let request = {
-          //   placeId: this.placeId[i].id,
-          //   fields: ['name', 'rating']
-          // };
-          // service.getDetails(request, (results, status) => {
-          //   if (status == google.maps.places.PlacesServiceStatus.OK) {
-          //     console.log(results)
-          //     this.placeDetails.push(results) 
-          //   }
-          // })
-          // console.log(this.placeDetails);  
         }
-          
-          // console.log(this.placeId);  
-          // this.setMarkers(this.positionMarkers)
         }
        })
       
   }
-    //  callback(results, status) {
-    //   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //     for (let i = 0; i < results.length; i++) {
-    //       let place = results[i];
-    //       let positionMarker = {
-    //         lat: place.geometry.viewport.na.j,
-    //         lng: place.geometry.viewport.ia.j
-    //       }
-    //       console.log(positionMarker);
-    //     }
-    //        this.setMarkers(this.positionMarkers)
-    //   }
-    //  }
 }

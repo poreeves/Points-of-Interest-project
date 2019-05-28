@@ -3,13 +3,14 @@
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Plenty of Pizza</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div *ngIf = '!_userService.loggedIn'>
-    <h2>Welcome to Points of Interest!</h2>
+    <h2>Welcome to Plenty of Pizza!</h2>
+    <h3>Explore and find the closets pies near you!</h3>
     <h4>Please Log In</h4>
   <button ion-button (click)= "toLog()" color = "secondary"> log in here</button>
   <button ion-button (click)="toReg()" color = "secondary">or Register here!</button>
@@ -17,7 +18,9 @@
   </div>
   
   <div *ngIf = '_userService.loggedIn'>
-    <h2>Welcome {{_userService.userInfo.firstName}}</h2>
+    <h2>Welcome {{_userService.userInfo.firstName}}!</h2>
+    <h3>Head over to the map to start your search for the best pizza near you!</h3>
+    <h4>Found somewhere great? Great! Add it to your favorites! <br> You can find your favorites on your account page</h4>
     <button ion-button (click)="toLogOut()" color = "secondary"> Log Out</button>
   </div>
 

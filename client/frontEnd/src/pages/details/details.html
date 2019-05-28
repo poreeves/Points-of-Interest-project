@@ -20,5 +20,9 @@
         <ion-item> {{day}} </ion-item>
         </div>
   </ion-item>
-  <button ion-button (click)= 'onAddFavs()'>Add to Favorites</button>
+  <div *ngIf = '!_maps.isFav'> 
+    <button ion-button (click)= 'onAddFavs()'>Add to Favorites</button>
+  </div>
+  <div *ngIf = '_maps.isFav'>
+      <button ion-button (click)= '_maps.onDeleteFav()' (click) = 'afterDelete()'>Remove from Favorites</button> </div>
 </ion-content>

@@ -20,13 +20,18 @@ export class DetailsPage {
   onAddFavs(){
     return this._maps.addFav(this._maps.placeDetails['place_id'], this._maps.placeDetails['name']).subscribe((response: any) => console.log(response) )
   }
+  
+  afterDelete(){
+    return this.navCtrl.pop();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
   }
   ionViewDidEnter(){
-    console.log("did enter")
-    console.log('geometyry location', this._maps.placeDetails['geometry']['location'])
+    console.log("did enter");
+    
+    console.log('geometyry location', this._maps.placeDetails['geometry']['location']);
     
   }
 

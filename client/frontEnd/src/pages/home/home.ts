@@ -32,11 +32,13 @@ export class HomePage {
     })
   }
   ionViewDidLoad() {
+    sessionStorage.clear();
+    console.log('sessionStorage token on load', sessionStorage.getItem('token'))
     return this._maps.getCurrentLoc();
   }
   ionViewDidEnter(){
     this.enableHomeMenu();
-    console.log(sessionStorage.getItem('token'))
+    console.log('sessionStorage token on enter', sessionStorage.getItem('token'))
     console.log(this._userService.loggedIn)
     console.log("did enter")
   }

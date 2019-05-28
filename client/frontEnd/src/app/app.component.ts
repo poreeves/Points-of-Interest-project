@@ -64,24 +64,24 @@ export class MyApp {
   onDetails(){
     this.nav.push(DetailsPage);
   }
-  goToDetails(id){
-    this.nav.push(DetailsPage);
-    console.log(id)
-    let request = {
-      placeId: id,
-      fields: ['name', 'place_id', 'type', 'rating', 'formatted_phone_number', 'geometry', 'formatted_address', 'icon', 'photo', 'opening_hours', 'website']
-    };
-    let service = new google.maps.places.PlacesService(document.createElement('div'));
-      service.getDetails(request, (results, status) => {
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
-            this._maps.placeDetails = results
-            console.log('results hours', results['opening_hours']['weekday_text'])
-            this._maps.openHours = results['opening_hours']['weekday_text']
-            console.log( 'provider details' ,this._maps.placeDetails)
-            console.log('placedetails[place_id]', this._maps.placeDetails['place_id'])
-            // this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
-          }
-        })
+  // goToDetails(id){
+  //   this.nav.push(DetailsPage);
+  //   console.log(id)
+  //   let request = {
+  //     placeId: id,
+  //     fields: ['name', 'place_id', 'type', 'rating', 'formatted_phone_number', 'geometry', 'formatted_address', 'icon', 'photo', 'opening_hours', 'website']
+  //   };
+  //   let service = new google.maps.places.PlacesService(document.createElement('div'));
+  //     service.getDetails(request, (results, status) => {
+  //         if (status == google.maps.places.PlacesServiceStatus.OK) {
+  //           this._maps.placeDetails = results
+  //           console.log('results hours', results['opening_hours']['weekday_text'])
+  //           this._maps.openHours = results['opening_hours']['weekday_text']
+  //           console.log( 'provider details' ,this._maps.placeDetails)
+  //           console.log('placedetails[place_id]', this._maps.placeDetails['place_id'])
+  //           // this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
+  //         }
+  //       })
 
-  }
+  // }
 }

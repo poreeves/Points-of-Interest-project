@@ -22,26 +22,32 @@ export class FavoritesPage {
   onDetails(){
     return this.navCtrl.push(DetailsPage)
   }
+
+
   onGetFav(){
     return this._maps.getFavs().subscribe((res: any) => {
       let favId: any[] = []
-      console.log(res)
+      console.log('getFav res', res)
       console.log('res.place', res['placeId'])
         for(let i=0; i<res.length; i++){
           favId.push({
             placeId: res[i]['placeId'],
-            name: res[i]['name']
+            name: res[i]['name'],
+            id: res[i]['id']
           })
         }
         this._maps.favPlaces = favId
+        console.log('maps favPlaces: placeId,name,id', this._maps.favPlaces)
 
     })
   }
   ionViewDidLoad() {
-    this.onGetFav()
+    console.log('did load')
+    // this.onGetFav()
     
   }
   ionViewDidEnter(){
+    this.onGetFav()
     console.log('did enter map favplace', this._maps.favPlaces)
   }
 }

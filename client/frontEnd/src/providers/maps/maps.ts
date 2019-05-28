@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, ViewChild } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NavController, Nav } from 'ionic-angular';
+import { response } from 'express';
 
 /*
   Generated class for the MapsProvider provider.
@@ -21,13 +22,41 @@ export class MapsProvider {
   openHours: any[] = [];
   favPlaces: any[] = [];
   favDetails: any[] = [];
-  postUrl: string = "http://localhost:3000/api/appUsers/"
+  postUrl: string = "http://localhost:3000/api/appUsers/";
+  isFav: boolean = false;
+  isFavId: string = '';
   
   
 
   constructor(public _http: HttpClient, private geolocation: Geolocation) {
     console.log('Hello MapsProvider Provider');
   }
+  checkFav(placeId){
+    return this._http.get(this.postUrl + sessionStorage.getItem('userId') + '/favPlaces?filter=%7B%22where%22%3A%7B%22placeId%22%3A%22' + placeId + '%22%7D%7D&access_token=' + sessionStorage.getItem('token'))
+  }
+  onCheckFav(placeId){
+    return this.checkFav(placeId).subscribe((response: any) => {
+      console.log("onCheckFav res", response)
+      if(response.length !== 0){
+        this.isFav = true
+        this.isFavId = response[0]['id']
+      }else {
+        this.isFav = false
+      } console.log('isFav', this.isFav)
+        console.log('isfavId' , this.isFavId)
+    })
+  }
+  
+  deleteFav(){
+    return this._http.delete(this.postUrl + sessionStorage.getItem('userId') + '/favPlaces/' + this.isFavId + '?access_token=' + sessionStorage.getItem('token'))
+  }
+
+  onDeleteFav(){
+    return this.deleteFav().subscribe((response: any) => {
+      console.log('onDeleteFav', response)
+    })
+  }
+
   sliceUrl(str){
     let halfStr = str.replace('<a href="', '"')
     let strNum: number = halfStr.search('>')
@@ -37,7 +66,7 @@ export class MapsProvider {
     this.imgUrl = newStr
     
   }
-  goToDetails(id){
+  goToDetails(id, fk){
     console.log(id)
     let request = {
       placeId: id,
@@ -45,16 +74,15 @@ export class MapsProvider {
     };
     let service = new google.maps.places.PlacesService(document.createElement('div'));
       service.getDetails(request, (results, status) => {
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
-            this.placeDetails = results
-            console.log('results hours', results['opening_hours']['weekday_text'])
-            this.openHours = results['opening_hours']['weekday_text']
-            console.log( 'provider details' ,this.placeDetails)
-            console.log('placedetails[place_id]', this.placeDetails['place_id'])
-            // this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
-          }
-        })
-
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          this.placeDetails = results
+          console.log('results hours', results['opening_hours']['weekday_text'])
+          this.openHours = results['opening_hours']['weekday_text']
+          console.log( 'provider details' ,this.placeDetails)
+          console.log('placedetails[place_id]', this.placeDetails['place_id'])
+          // this.sliceUrl(this._maps.placeDetails['photos'][0]['html_attributions'][0])
+        }
+      })
   }
 
   addFav(id, name){

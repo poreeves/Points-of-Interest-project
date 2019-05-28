@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <ion-list *ngFor= 'let item of _maps.favPlaces'>
-      <button ion-item (click) = "this._maps.goToDetails(item.placeId)" (click) = "onDetails()">{{item.name}}</button>
+      <button ion-item (click) = "this._maps.goToDetails(item.placeId)" (click) = 'this._maps.onCheckFav(item.placeId)' (click) = "onDetails()">{{item.name}}</button>
   </ion-list>
 
 </ion-content>

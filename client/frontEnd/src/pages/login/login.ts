@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service'
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { response } from 'express';
+import { MapsProvider } from '../../providers/maps/maps';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,7 +20,8 @@ export class LoginPage {
   private log: FormGroup
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public _userService: UserServiceProvider,
-    private formBuilder: FormBuilder ) {
+    private formBuilder: FormBuilder,
+    public _maps: MapsProvider ) {
       this.log =this.formBuilder.group({
         email: ['',Validators.required],
         password: ['',Validators.required]
@@ -40,6 +42,30 @@ export class LoginPage {
    }) 
   }
 
+  // onGetFav(){
+  //   return this._maps.getFavs().subscribe((res: any) => {
+  //     let favId: any[] = []
+  //     console.log('getFav res', res)
+  //     console.log('res.place', res['placeId'])
+  //       for(let i=0; i<res.length; i++){
+  //         favId.push({
+  //           placeId: res[i]['placeId'],
+  //           name: res[i]['name'],
+  //           id: res[i]['id']
+  //         })
+  //       }
+  //       this._maps.favPlaces = favId
+  //       console.log('maps favPlaces: placeId,name,id', this._maps.favPlaces)
+
+  //   })
+  // }
+
+  // ifLoggedIn(){
+  //   if(this._userService.loggedIn = true) {
+  //     return this.onGetFav()
+  //   }
+  // }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
@@ -50,5 +76,7 @@ export class LoginPage {
         this._userService.userInfo = response
       })
   }
-  
+  ionViewDidLeave(){
+    // return this.ifLoggedIn();
+  }
 }
